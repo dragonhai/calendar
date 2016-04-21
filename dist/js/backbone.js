@@ -1,1 +1,0 @@
-!function(a){define("ccalendar",["backbone","calendar"],a)}(function(a,b){"use strict";var c=a.View.extend({initialize:function(){this.render()},render:function(){var a=new b;a.init("../js/data/events.json")}});return c});
