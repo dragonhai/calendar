@@ -53,7 +53,9 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'lib/js/vendor/', src: ['**'], dest: 'dist/js/vendor'}
+          {expand: true, cwd: 'lib/js/vendor/', src: ['**'], dest: 'dist/js/vendor'},
+          {expand: true, cwd: 'lib/js/data/', src: ['**'], dest: 'dist/js/data'},
+          {expand: true, cwd: 'lib/images/', src: ['**'], dest: 'dist/images'}
         ]
       }
     },
@@ -101,9 +103,9 @@ module.exports = function(grunt) {
         ],
         tasks: ['uglify']
       },
-      js_lib: {
+      lib: {
         files: [
-          'lib/js/lib/**/*.js', 'lib/js/**/*.json'
+          'lib/js/vendor/**/*.js', 'lib/js/**/*.json', 'lib/images/**/*.*'
         ],
         tasks: ['copy']
       },

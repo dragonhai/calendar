@@ -1,0 +1,26 @@
+doctype html
+- var siteTitle = 'Backbone.Calendar'
+- var title = '';
+block vars
+include components
+html(lang='ja')
+  head 
+    meta(charset='UTF-8')
+    title=siteTitle
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='Description', content='')
+    meta(name='Keywords', content='')
+    block links
+  body
+    header#global-header
+      include header
+
+    section#content
+      header#content-header
+        include content-header
+      block content
+
+    footer#global-footer
+      include footer 
+
+    block scripts 

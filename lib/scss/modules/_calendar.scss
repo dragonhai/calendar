@@ -1,0 +1,252 @@
+$holiday-color: #e84c3d;
+
+$calendar-header-color: $color-white;
+$calendar-header-bg: #434a54;
+$calendar-margin-top: 100px;
+$calendar-margin-bottom: 60px;
+
+.calendar {
+  margin: auto;
+  margin-top: $calendar-margin-top;
+  margin-bottom: $calendar-margin-bottom;
+  text-align: center;
+  width: (10 / 12) * 100%;
+  header {
+    position: relative;
+  }
+  h2 {
+    text-transform: uppercase;
+    color: $calendar-header-color;
+    background-color: $calendar-header-bg;
+    padding: 15px;
+    margin: 0;
+    height: 62px;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  td, th {
+    &:first-child{
+      color: #dc0800;
+    }
+    &:last-child {
+      color: #286bcc
+    }
+  }
+  tr {
+    width: 100%;
+  }
+  thead {
+    font-weight: 600;
+    text-transform: uppercase;
+    tr {
+      color: #fff;
+      background-color: #5dc9e6;
+      th {
+        padding: 20px;
+      }
+    }
+  }
+  tbody {
+    color: #7c8a95;
+    tr:nth-child(odd) {
+      background: #fff;
+    }
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+    td {
+      text-align: center;
+      width: (1 / 7) * 100% ;
+      &:hover {
+        background-color: #eee;
+      }
+      &.active {
+        background-color: #ddd;
+      }
+      .calendar-cell {
+        position: relative;
+        padding: 10px 5px;
+        height: 122px;
+        width: 100%;
+      }
+    }
+  }
+  .holiday {
+    color: $color-red;
+  }
+  .date {
+    font-size: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .current-day {
+      background: #fc7fa3;
+      color: #f9f9f9;
+  }
+  .events {
+    margin-top: 30px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-prev,
+  .btn-next {
+    height: 62px;
+    width: 55px;
+    color: #cbd1d2;
+    position: absolute;
+    top: 0;
+  }
+
+  .btn-prev {
+    background: transparent url('../img/ico_arrow-left.png') center no-repeat;
+    left: 0;
+    border-right: 1px solid #fff;
+  }
+  .btn-next {
+    background: transparent url('../img/ico_arrow-right.png') center no-repeat;
+    right: 0;
+    border-left: 1px solid #fff;
+  }
+
+  .day-event {
+    background-color: #f2f2f2 ;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 50px;
+    display:none;
+  }
+
+  .day-event p{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .day-event span{
+    font-size: 12px;
+  }
+
+  .day-event button {
+    position: relative;
+    vertical-align: top;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #c0392b;
+    border: 0;
+    border-bottom: 2px solid #b53224;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0 -2px #b53224;
+    box-shadow: inset 0 -2px #b53224;
+  }
+
+  .check-btn {
+    width: 100%;
+  }
+}
+
+.event {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  &.event-type-general {
+    color: #286bcc;
+  }
+  &.event-type-holiday {
+    color: #dc0800;
+  }
+}
+
+.calendar-cell {
+  border-left: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  &.calendar-cell-type-general {
+    background-color: #d5e8d4;
+  }
+  &.calendar-cell-type-holiday {
+    background-color: #fbdae6;
+  }
+  &.calendar-cell-type-past {
+    background-color: #d4e1f5;
+  }
+}
+
+.calendar-cell-message {
+  position: absolute;
+  background: #fff;
+  z-index: 999;
+  padding: 20px;
+  top: 0;
+  transform: translate(-50%, -100%);
+  left: 50%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  textarea {
+    height: 80px;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    color: $text-color;
+    &:focus {
+      outline: 0;
+    }
+  }
+  &:before {
+    position: absolute;
+    border-color: transparent;
+    content: " ";
+    border-top-color: #fff;
+    border-width: 10px;
+    border-bottom-width: 0;
+    bottom: 0;
+    margin-bottom: -10px;
+    margin-left: -10px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+}
+
+.calendar-cell-message.past ~ .calendar-cell-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(196, 215, 245, 0.92);
+}
+.calendar-cell-message.future ~ .calendar-cell-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(204, 204, 204, 0.35);
+}
+
+@media screen and (max-width: $screen-sm) {
+  .calendar tbody td .calendar-cell {
+    height: 50px;
+  }
+  .calendar .events {
+    margin-top: 5px;
+    display: none;
+  }
+  .calendar {
+    margin-left: -5px;
+    margin-right: -5px;
+    width: auto;
+    .date {
+      font-size: 12px;
+    }
+  }
+}
