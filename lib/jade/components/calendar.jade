@@ -1,0 +1,33 @@
+mixin calendar(register)
+  section.section-calendar
+    .calendar
+      header
+        h2.calendar-title
+        a.btn-prev(href='#')
+        a.btn-next(href='#')
+      table
+        thead.event-days
+          tr
+            th 日
+            th 月
+            th 火
+            th 水
+            th 木
+            th 金
+            th 土
+        tbody.event-calendar
+          each itemDates in [1, 2, 3, 4, 5]
+            tr
+              each itemDay in [1, 2, 3, 4, 5, 6, 7]
+                td
+                  .calendar-cell
+                    .date &nbsp;
+                    .events &nbsp;
+                    if register && register.time == 'past' && itemDates == 3 && itemDay == 3
+                      .calendar-cell-message.past
+                        textarea 実績登録
+
+                    if register && register.time == 'future' && itemDates == 5 && itemDay == 5
+                      .calendar-cell-message.future
+                        textarea 予定登録
+                    .calendar-cell-bg

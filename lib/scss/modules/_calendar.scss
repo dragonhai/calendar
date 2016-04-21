@@ -98,17 +98,33 @@ $calendar-margin-bottom: 60px;
     color: #cbd1d2;
     position: absolute;
     top: 0;
+    &:before {
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      left: 50%;
+      margin-left: -10px;
+      border-style: solid;
+      border-color: transparent;
+      content: "";
+    }
   }
 
   .btn-prev {
-    background: transparent url('../img/ico_arrow-left.png') center no-repeat;
     left: 0;
     border-right: 1px solid #fff;
+    &:before {
+      border-width: 10px 15px 10px 0;
+      border-right-color: #fff;
+    }
   }
   .btn-next {
-    background: transparent url('../img/ico_arrow-right.png') center no-repeat;
     right: 0;
     border-left: 1px solid #fff;
+    &:before {
+      border-width: 10px 0 10px 15px;
+      border-left-color: #fff;
+    }
   }
 
   .day-event {
@@ -232,6 +248,8 @@ $calendar-margin-bottom: 60px;
   left: 0;
   background-color: rgba(204, 204, 204, 0.35);
 }
+
+
 
 @media screen and (max-width: $screen-sm) {
   .calendar tbody td .calendar-cell {

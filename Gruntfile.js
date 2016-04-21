@@ -3,77 +3,74 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     sass: {
       dist: {
-        options: {
-          style: 'expanded',
-          sourcemap: 'file'
-        },
+        options: { style: 'expanded', sourcemap: 'file' },
         files: [
-          {
-            expand: true,
-            cwd: 'lib/scss/',
-            src: ['*.scss'],
-            dest: 'dist/css/',
-            ext: '.css'
-          }
+          { expand: true, cwd: 'lib/scss/', src: ['*.scss'], dest: 'dist/css/', ext: '.css' }
         ]
       }
     },
     uglify: {
       dist: {
         files: [
-          {
-            expand: true,
-            cwd: 'lib/js/',
-            src: ['**/*.js'],
-            dest: 'dist/js/',
-            ext: '.js'
-          }
+          { expand: true, cwd: 'lib/js/', src: ['**/*.js'], dest: 'dist/js/', ext: '.js' }
         ]
       }
     },
     jade: {
       compile: {
-        options: {
-          data: {
-            debug: false
-          },
-          pretty: true
-        },
+        options: { data: { debug: false }, pretty: true },
         files: [
-          {
-            expand: true,
-            cwd: 'lib/jade/front/',
-            src: ['**/*.jade'],
-            dest: 'dist/',
-            ext: '.html'
-          }
+          { expand: true, cwd: 'lib/jade/front/', src: ['**/*.jade'], dest: 'dist/', ext: '.html' }
         ]
       }
     },
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'lib/js/vendor/', src: ['**'], dest: 'dist/js/vendor'},
-          {expand: true, cwd: 'lib/js/data/', src: ['**'], dest: 'dist/js/data'},
-          {expand: true, cwd: 'lib/images/', src: ['**'], dest: 'dist/images'}
+          { expand: true, cwd: 'lib/js/vendor/', src: ['**'], dest: 'dist/js/vendor' },
+          { expand: true, cwd: 'lib/js/data/', src: ['**'], dest: 'dist/js/data' },
+          { expand: true, cwd: 'lib/images/', src: ['**'], dest: 'dist/images' }
         ]
       }
     },
     browserSync: {
       dev: {
         bsFiles: {
-            src : [
-              'dist/css/*.css',
-              'dist/*.html'
-            ]
+          src : [
+            'dist/css/*.css',
+            'dist/*.html'
+          ]
         },
-        options: {
-            watchTask: true,
-            port: 8000,
-            server: {
-                baseDir: "./dist"
+        proxy: {
+          proxyReq: [
+            function (proxyReq) {
+              console.log(proxyReq);
+              proxyReq.setHeader('Content-Encoding', 'gzip');
             }
-        }
+          ],
+          proxyRes: [
+              function (res, req, next) {
+                  console.log(res.headers);
+                  next();
+              }
+          ]
+        },
+
+        options: {
+          watchTask: true,
+          port: 8000,
+          server: {
+            baseDir: "./dist"
+          }
+        },
+        middleware: [
+            function (req, res, next) {
+                console.log(1111);
+            },
+            function (req, res, next) {
+                console.log(2222);
+            }
+        ]
       }
     },
     cssmin: {
@@ -81,13 +78,7 @@ module.exports = function(grunt) {
         report: 'gzip'
       },
       target: {
-        files: [{
-          expand: true,
-          cwd: 'dist/css',
-          src: ['*.css'],
-          dest: 'dist/css',
-          ext: '.min.css'
-        }]
+        files: [{ expand: true, cwd: 'dist/css', src: ['*.css'], dest: 'dist/css', ext: '.min.css' }]
       }
     },
     watch: {
@@ -111,9 +102,7 @@ module.exports = function(grunt) {
       },
       jade: {
         files: [
-          'lib/jade/global/**/*.jade',
-          'lib/jade/components/**/*.jade',
-          'lib/jade/collections/**/*.jade'
+          'lib/jade/front/**/*.jade',
         ],
         tasks: ['jade:compile']
       }

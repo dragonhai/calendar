@@ -1,9 +1,10 @@
 extends ../global/layout
 block vars
   - var title = 'index | Backbone.Calendar'
-  - var login = true
 block links
   link(rel='stylesheet', href='/css/calendar.css')
+block scripts
+  script(type='text/javascript', src='/js/vendor/require.js', data-main='/js/backbone.calendar.js')
 block content
   .container
-    p test me!
+    +calendar
