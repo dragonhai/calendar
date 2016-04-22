@@ -2,32 +2,34 @@ mixin calendar(register)
   section.section-calendar
     .calendar
       header
-        h2.calendar-title
+        h2.calendar-title &nbsp;
         a.btn-prev(href='#')
         a.btn-next(href='#')
-      table
-        thead.event-days
-          tr
-            th 日
-            th 月
-            th 火
-            th 水
-            th 木
-            th 金
-            th 土
-        tbody.event-calendar
+      .table
+        .thead
+          .tr
+            - var days = ['日', '月', '火', '水', '木', '金', '土']
+            each day in days
+              .th 
+                .inner=day
+        .tbody.event-calendar
           each itemDates in [1, 2, 3, 4, 5]
-            tr
+            .tr
               each itemDay in [1, 2, 3, 4, 5, 6, 7]
-                td
-                  .calendar-cell
+                .td
+                  - var eventStatus = {time: '', message: ''}
+                  
+                  if(register && register.time == 'past' && itemDates == 3 && itemDay == 3)
+                    eventStatus = {time: 'past', message: '実績登録'}
+                  
+                  if(register && register.time == 'future' && itemDates == 5 && itemDay == 5)
+                    eventStatus = {time: 'future', message: '予定登録'}
+                  .inner
                     .date &nbsp;
-                    .events &nbsp;
-                    if register && register.time == 'past' && itemDates == 3 && itemDay == 3
-                      .calendar-cell-message.past
-                        textarea 実績登録
-
-                    if register && register.time == 'future' && itemDates == 5 && itemDay == 5
-                      .calendar-cell-message.future
-                        textarea 予定登録
-                    .calendar-cell-bg
+                    .events(class=eventStatus.time) &nbsp;
+                    if (itemDates == 5 && itemDay == 5)
+                      .events-number
+                        .inner 2
+                    if (eventStatus.time)
+                      .events-message
+                        textarea=eventStatus.message

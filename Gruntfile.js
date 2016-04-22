@@ -102,7 +102,7 @@ module.exports = function(grunt) {
       },
       jade: {
         files: [
-          'lib/jade/front/**/*.jade',
+          'lib/jade/**/*.jade',
         ],
         tasks: ['jade:compile']
       }

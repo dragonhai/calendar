@@ -162,7 +162,11 @@ h3 {
   .hidden-sm {
     display: none !important;
   }
+  h1 {
+    font-size: 28px;
+  }
   h2 {
+    font-size: 20px;
     margin-top: $h2-margin-top;
     margin-bottom: $h2-margin-bottom;
   }
