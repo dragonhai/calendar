@@ -29,7 +29,7 @@ mixin calendar(register)
                     .events(class=eventStatus.time) &nbsp;
                     if (itemDates == 5 && itemDay == 5)
                       .events-number
-                        .inner 2
+                        .inner-number 2
                     if (eventStatus.time)
                       .events-message
                         textarea=eventStatus.message

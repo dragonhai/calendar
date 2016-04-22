@@ -15,6 +15,10 @@ $calendar-body-color: #7c8a95;
 $calendar-body-td-hover-bg: #eee;
 $calendar-body-td-active-bg: #ddd;
 
+.section-calendar {
+  padding: 1px;
+}
+
 .calendar {
   margin: auto;
   margin-top: $calendar-margin-top;
@@ -87,13 +91,16 @@ $calendar-body-td-active-bg: #ddd;
     .tr:nth-child(even) {
       background: $calendar-body-tr-even-bg;
     }
+    .tr:first-child {
+      td {
+        border-top: 0;
+      }
+    }
     .td {
       text-align: center;
       border-left: 1px solid #f0f0f0;
-      border-top: 1px solid #f0f0f0;
       &:first-child {
         border-left: 0;
-        border-top: 0;
       }
       &:hover {
         background-color: $calendar-body-td-hover-bg;
@@ -248,11 +255,15 @@ $calendar-body-td-active-bg: #ddd;
   color: #fff;
   position: relative;
 }
-.calendar .events-number .inner {
+.calendar .events-number .inner-number {
   top: 50%;
   padding-top: 0;
   margin-top: -5px;
   line-height: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 15px;
 }
 
 
@@ -275,7 +286,7 @@ $calendar-body-td-active-bg: #ddd;
       font-size: 12px;
     }
   }
-  .calendar .events-number .inner {
+  .calendar .events-number .inner-number {
     font-size: 10px;
   }
 }

@@ -175,6 +175,10 @@ table {
   border-spacing: 0;
 }
 
+.section-calendar {
+  padding: 1px;
+}
+
 .calendar {
   margin: auto;
   margin-top: 100px;
@@ -246,14 +250,15 @@ table {
 .calendar .tbody .tr:nth-child(even) {
   background: #f8f9fa;
 }
+.calendar .tbody .tr:first-child td {
+  border-top: 0;
+}
 .calendar .tbody .td {
   text-align: center;
   border-left: 1px solid #f0f0f0;
-  border-top: 1px solid #f0f0f0;
 }
 .calendar .tbody .td:first-child {
   border-left: 0;
-  border-top: 0;
 }
 .calendar .tbody .td:hover {
   background-color: #eee;
@@ -404,11 +409,15 @@ table {
   position: relative;
 }
 
-.calendar .events-number .inner {
+.calendar .events-number .inner-number {
   top: 50%;
   padding-top: 0;
   margin-top: -5px;
   line-height: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 15px;
 }
 
 @media screen and (max-width: 768px) {
@@ -430,7 +439,7 @@ table {
     font-size: 12px;
   }
 
-  .calendar .events-number .inner {
+  .calendar .events-number .inner-number {
     font-size: 10px;
   }
 }

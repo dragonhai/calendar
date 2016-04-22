@@ -12,7 +12,7 @@ module.exports = function(grunt) {
     uglify: {
       dist: {
         files: [
-          { expand: true, cwd: 'lib/js/', src: ['**/*.js'], dest: 'dist/js/', ext: '.js' }
+          { expand: true, cwd: 'lib/js/', src: ['calendar.js', 'ccalendar.js'], dest: 'dist/js/', ext: '.js' }
         ]
       }
     },
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       main: {
         files: [
           { expand: true, cwd: 'lib/js/vendor/', src: ['**'], dest: 'dist/js/vendor' },
-          { expand: true, cwd: 'lib/js/data/', src: ['**'], dest: 'dist/js/data' },
+          { expand: true, cwd: 'lib/js/data/', src: ['events.json', 'config.css.json'], dest: 'dist/js/data' },
           { expand: true, cwd: 'lib/images/', src: ['**'], dest: 'dist/images' }
         ]
       }
@@ -38,7 +38,9 @@ module.exports = function(grunt) {
         bsFiles: {
           src : [
             'dist/css/*.css',
-            'dist/*.html'
+            'dist/*.html',
+            'dist/js/data/*.json',
+            'dist/js/**/*.js'
           ]
         },
         proxy: {
